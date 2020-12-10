@@ -7,7 +7,7 @@ from tcp_endpoint.RosPublisher import RosPublisher
 from tcp_endpoint.RosSubscriber import RosSubscriber
 
 
-from std_msgs.msg import Empty
+from std_msgs.msg import Int32
 from simulation_msgs.msg import Robot, RobotPoseArray, TwistRobot
 
 
@@ -17,7 +17,7 @@ def main():
     tcp_server = TCPServer("UnityBridge", buffer_size, max_connections)
 
     tcp_server.source_destination_dict = {
-        'presence': RosPublisher('presence', Empty, queue_size=10, latch=True),
+        'presence': RosPublisher('presence', Int32, queue_size=10, latch=True),
         'robots': RosPublisher('robots', RobotPoseArray, queue_size=10),
         'robot_def': RosSubscriber('robot_def', Robot, tcp_server),
         'robot_cmd_vel': RosSubscriber('robot_cmd_vel', TwistRobot, tcp_server)
