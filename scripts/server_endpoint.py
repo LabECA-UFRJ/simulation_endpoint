@@ -8,7 +8,7 @@ from tcp_endpoint.RosSubscriber import RosSubscriber
 
 
 from std_msgs.msg import Int32
-from simulation_msgs.msg import Robot, PoseRobotArray, TwistRobot
+from simulation_msgs.msg import Robot, PoseRobotArray, RobotWheelSpeed
 
 
 def main():
@@ -20,7 +20,7 @@ def main():
         'presence': RosPublisher('presence', Int32, queue_size=10, latch=True),
         'robots': RosPublisher('robots', PoseRobotArray, queue_size=10),
         'robot_def': RosSubscriber('robot_def', Robot, tcp_server),
-        'robot_cmd_vel': RosSubscriber('robot_cmd_vel', TwistRobot, tcp_server)
+        'robot_cmd_vel': RosSubscriber('robot_cmd_vel', RobotWheelSpeed, tcp_server)
     }
 
     rospy.init_node("UnityBridge")
