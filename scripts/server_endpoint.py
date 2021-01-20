@@ -18,7 +18,7 @@ def main():
 
     tcp_server.source_destination_dict = {
         'presence': RosPublisher('presence', Int32, queue_size=10, latch=True),
-        'robots': RosPublisher('robots', PoseRobotArray, queue_size=10),
+        'robots': RosPublisher('robots', PoseRobotArray, queue_size=1000),
         'robot_def': RosSubscriber('robot_def', Robot, tcp_server),
         'robot_cmd_vel': RosSubscriber('robot_cmd_vel', RobotWheelSpeed, tcp_server)
     }
